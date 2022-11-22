@@ -1,0 +1,34 @@
+verify(Y):-Y==yes->
+write('How many employees do you have'),nl,
+    read(EMPLOYEES),
+    check_employees(EMPLOYEES);
+    write('Thank you for using our service').
+
+check_employees(EMPLOYEES):-EMPLOYEES<1->
+write('how many competitors are around you'),
+    read(COMPETITION),
+    check_competitors(COMPETITION,EMPLOYEES);
+    write('your business will fail').
+
+check_competitors(COMPETITION,EMPLOYEE_NUM):-COMPETITION<3->
+write('what is the size of the largest competitor in terms of employees'),nl,
+    read(COMPETITOR_SIZE),
+    check_size_of_largest_competitor(COMPETITOR_SIZE,EMPLOYEE_NUM);
+write('your business is likely going to fail').
+
+check_size_of_largest_competitor(COMP_SIZE,NO_OF_EMPLOYEES):-COMP_SIZE<NO_OF_EMPLOYEES->
+write('what is the revenue of the business in KSH'),
+    read(REVENUE),
+    write('what are the expenses of the business in KSH'),
+    read(EXPENSES),
+    check_if_revenues_match_expenses(REVENUE,EXPENSES);
+    write('your business will likely fail').
+check_if_revenues_match_expenses(REVENUE,EXPENSES):- REVENUE>EXPENSES->
+write('the business will likely succeed');
+write('The business will likely fail').
+
+success:-
+    write('welcome to business diagnosis support'),
+    write('Do you want us to analyse your business(yes/no)'),nl,
+    read(X),
+    verify(X).
